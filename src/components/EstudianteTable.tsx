@@ -43,14 +43,14 @@ const EstudianteTable: React.FC = () => {
     };
 
     return (
-        <div>
-            <h2>Estudiantes</h2>
+        <div className="container">
+            <h2 className="my-4">Estudiantes</h2>
             <EstudianteForm
                 onEstudianteAdded={handleEstudianteAdded}
                 onEstudianteUpdated={handleEstudianteUpdated}
                 estudianteToEdit={estudianteToEdit}
             />
-            <table>
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -68,8 +68,8 @@ const EstudianteTable: React.FC = () => {
                             <td>{estudiante.apellido}</td>
                             <td>{estudiante.email}</td>
                             <td>
-                                <button onClick={() => handleEditEstudiante(estudiante)}>Editar</button>
-                                <button onClick={() => handleDeleteEstudiante(estudiante.id)}>Eliminar</button>
+                                <button className="btn btn-primary" onClick={() => handleEditEstudiante(estudiante)}>Editar</button>
+                                <button className="btn btn-danger" onClick={() => handleDeleteEstudiante(estudiante.id)}>Eliminar</button>
                             </td>
                         </tr>
                     ))}

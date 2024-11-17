@@ -44,35 +44,49 @@ const EstudianteForm: React.FC<EstudianteFormProps> = ({ onEstudianteAdded, onEs
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Nombre:</label>
+        <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+            <div className="mb-3">
+                <label className="form-label">Nombre:</label>
                 <input
                     type="text"
+                    className="form-control"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                     required
                 />
+                <div className="invalid-feedback">
+                    Por favor ingrese un nombre.
+                </div>
             </div>
-            <div>
-                <label>Apellido:</label>
+            <div className="mb-3">
+                <label className="form-label">Apellido:</label>
                 <input
                     type="text"
+                    className="form-control"
                     value={apellido}
                     onChange={(e) => setApellido(e.target.value)}
                     required
                 />
+                <div className="invalid-feedback">
+                    Por favor ingrese un apellido.
+                </div>
             </div>
-            <div>
-                <label>Email:</label>
+            <div className="mb-3">
+                <label className="form-label">Email:</label>
                 <input
                     type="email"
+                    className="form-control"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
+                <div className="invalid-feedback">
+                    Por favor ingrese un email válido.
+                </div>
             </div>
-            <button type="submit">{isEditMode ? 'Actualizar Estudiante' : 'Agregar Estudiante'}</button>
+            <button type="submit" className="btn btn-primary">
+                {isEditMode ? 'Actualizar Estudiante' : 'Agregar Estudiante'}
+            </button>
         </form>
     );
 };
