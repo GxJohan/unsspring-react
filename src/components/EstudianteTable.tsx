@@ -1,4 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableHead, 
+  TableRow,
+  Paper,
+  Button,
+  Box
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import EstudianteService from '../services/EstudianteService';
 import { Estudiante } from '../types/Estudiante';
 import EstudianteForm from './EstudianteForm';
@@ -43,39 +56,52 @@ const EstudianteTable: React.FC = () => {
     };
 
     return (
-        <div>
-            <h2>Estudiantes</h2>
+        <Box sx={{ width: '100%', mt: 3 }}>
             <EstudianteForm
                 onEstudianteAdded={handleEstudianteAdded}
                 onEstudianteUpdated={handleEstudianteUpdated}
                 estudianteToEdit={estudianteToEdit}
             />
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {estudiantes.map(estudiante => (
-                        <tr key={estudiante.id}>
-                            <td>{estudiante.id}</td>
-                            <td>{estudiante.nombre}</td>
-                            <td>{estudiante.apellido}</td>
-                            <td>{estudiante.email}</td>
-                            <td>
-                                <button onClick={() => handleEditEstudiante(estudiante)}>Editar</button>
-                                <button onClick={() => handleDeleteEstudiante(estudiante.id)}>Eliminar</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            <TableContainer component={Paper} sx={{ mt: 3 }}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>ID</TableCell>
+                            <TableCell>Nombre</TableCell>
+                            <TableCell>Apellido</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Acciones</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {estudiantes.map(estudiante => (
+                            <TableRow key={estudiante.id}>
+                                <TableCell>{estudiante.id}</TableCell>
+                                <TableCell>{estudiante.nombre}</TableCell>
+                                <TableCell>{estudiante.apellido}</TableCell>
+                                <TableCell>{estudiante.email}</TableCell>
+                                <TableCell>
+                                    <Button
+                                        startIcon={<EditIcon />}
+                                        onClick={() => handleEditEstudiante(estudiante)}
+                                        sx={{ mr: 1 }}
+                                    >
+                                        Editar
+                                    </Button>
+                                    <Button
+                                        startIcon={<DeleteIcon />}
+                                        color="error"
+                                        onClick={() => handleDeleteEstudiante(estudiante.id)}
+                                    >
+                                        Eliminar
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Box>
     );
 };
 
