@@ -43,38 +43,52 @@ const EstudianteTable: React.FC = () => {
     };
 
     return (
-        <div>
-            <h2>Estudiantes</h2>
-            <EstudianteForm
-                onEstudianteAdded={handleEstudianteAdded}
-                onEstudianteUpdated={handleEstudianteUpdated}
-                estudianteToEdit={estudianteToEdit}
-            />
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {estudiantes.map(estudiante => (
-                        <tr key={estudiante.id}>
-                            <td>{estudiante.id}</td>
-                            <td>{estudiante.nombre}</td>
-                            <td>{estudiante.apellido}</td>
-                            <td>{estudiante.email}</td>
-                            <td>
-                                <button onClick={() => handleEditEstudiante(estudiante)}>Editar</button>
-                                <button onClick={() => handleDeleteEstudiante(estudiante.id)}>Eliminar</button>
-                            </td>
+        <div className="p-2 md:p-4">
+            <h2 className="text-xl md:text-2xl font-bold mb-4">Estudiantes</h2>
+            <div className="mb-6">
+                <EstudianteForm
+                    onEstudianteAdded={handleEstudianteAdded}
+                    onEstudianteUpdated={handleEstudianteUpdated}
+                    estudianteToEdit={estudianteToEdit}
+                />
+            </div>
+            <div className="overflow-x-auto rounded-lg shadow">
+                <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th className="hidden md:table-cell px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido</th>
+                            <th className="hidden md:table-cell px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {estudiantes.map(estudiante => (
+                            <tr key={estudiante.id} className="hover:bg-gray-50">
+                                <td className="hidden md:table-cell px-4 py-3 whitespace-nowrap text-sm">{estudiante.id}</td>
+                                <td className="px-4 py-3 whitespace-nowrap text-sm">{estudiante.nombre}</td>
+                                <td className="px-4 py-3 whitespace-nowrap text-sm">{estudiante.apellido}</td>
+                                <td className="hidden md:table-cell px-4 py-3 whitespace-nowrap text-sm">{estudiante.email}</td>
+                                <td className="px-4 py-3 whitespace-nowrap text-sm text-right">
+                                    <button 
+                                        onClick={() => handleEditEstudiante(estudiante)}
+                                        className="inline-flex items-center px-2 py-1 text-sm text-indigo-600 hover:text-indigo-900"
+                                    >
+                                        Editar
+                                    </button>
+                                    <button 
+                                        onClick={() => handleDeleteEstudiante(estudiante.id)}
+                                        className="inline-flex items-center px-2 py-1 ml-2 text-sm text-red-600 hover:text-red-900"
+                                    >
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
