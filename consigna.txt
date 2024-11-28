@@ -1,0 +1,4 @@
+Extender el proyecto -Spring con JWT para poder crear usarios de ambos roles (ADMIN y USER). Donde solo los ADMIN pueden crear usuarios.
+- Asegurar que la contraseña generada esté hasheada y almacenada en la BD
+- Hacer pruebas en POSTMAN
+- id, pass, username, nombre y email.
